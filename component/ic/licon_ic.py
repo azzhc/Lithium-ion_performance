@@ -1057,7 +1057,7 @@ class Ui_MainWindow(object):
         # 基于短时充电数据的锂电池健康状态及老化机制智能量化平台
         MainWindow.setWindowTitle(_translate("MainWindow", "锂电卫士"))
         self.IC.setText(_translate("MainWindow", "IC曲线分析"))
-        self.SOH.setText(_translate("MainWindow", "SOH曲线分析"))
+        self.SOH.setText(_translate("MainWindow", "SOH分析"))
         self.OLD.setText(_translate("MainWindow", "电池老化分析"))
         self.CONSL.setText(_translate("MainWindow", "控制台"))
         self.groupBox_2.setTitle(_translate("MainWindow", "输入数据预览"))
