@@ -26,7 +26,7 @@ import re
 from component.soh.soh_logic import sohMainWindow
 from component.old.oldana_logic import oldMainWindow
 # from ..old.oldana_logic import oldMainWindow
-
+from component.llm.llm_logic import llmLogic
 # 定义一个函数，用于从文件名中提取数字部分
 def extract_number(filename):
     match = re.search(r'\d+', filename)
@@ -53,11 +53,16 @@ class ic_MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.F = MyFigure(width=8, height=4, dpi=100)
 
+        # llm页面
+        self.llm_window = llmLogic()
+
         # 添加新页
         self.sohpage = sohMainWindow()
         self.stackedWidget.addWidget(self.sohpage)
         self.oldpage = oldMainWindow()
         self.stackedWidget.addWidget(self.oldpage)
+
+        # LLM
 
         # SCU LOGO
         sculogo = QPixmap('../../src/logonow.png')
@@ -103,6 +108,7 @@ class ic_MainWindow(QMainWindow, Ui_MainWindow):
         self.SOH.clicked.connect(self.gotosoh)
         self.OLD.clicked.connect(self.gotoold)
         self.CONSL.clicked.connect(self.command)
+        self.LLM.clicked.connect(self.llm_command)
 
         # 输入数据展示按钮
         self.pushButton.clicked.connect(self.ic_getin_ref)
@@ -653,6 +659,12 @@ class ic_MainWindow(QMainWindow, Ui_MainWindow):
             self.new_window.show()
         else:
             self.new_window.hide()
+
+    def llm_command(self):
+        if self.llm_window.isHidden():
+            self.llm_window.show()
+        else:
+            self.llm_window.hide()
 
 
 if __name__ == "__main__":

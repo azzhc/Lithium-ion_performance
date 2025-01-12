@@ -40,28 +40,23 @@ app.setStyleSheet("""
         background-position: center;
         background-repeat: no-repeat;
     }
-    QMessageBox { 
-        background-color: white; 
-        }
-    /* 输入框和按钮的样式 */
-    QComboBox, QPushButton {
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 4px; /* 圆角边框 */
-        padding: 5px;
-        opacity: 1;  /* 输入框不透明 */
+
+    /* QMessageBox 的样式，保持白色背景 */
+    QMessageBox {
+        background-color: white;
     }
 
-    /* 让所有控件的背景透明 */
-    QWidget {
-        background: transparent;
-        border: none;
+    /* 输入框和按钮的样式 */
+    QComboBox, QPushButton {
+        background: white; /* 不透明背景 */
+        border: 2px solid #ccc;
+        border-radius: 4px; /* 圆角边框 */
         padding: 5px;
     }
 
     /* 按钮的样式（可以增加一些特效） */
     QPushButton {
-        background-color: #f0f0f0; /* 按钮背景色 */
+        background-color: #f0f0f0; /* 按钮背景色，不透明 */
         border: 1px solid #ccc;
         border-radius: 4px;
         padding: 8px 12px; /* 按钮内边距 */
@@ -75,13 +70,16 @@ app.setStyleSheet("""
     QPushButton:pressed {
         background-color: #d0d0d0; /* 按钮按下时的背景色 */
     }
-    
-    {
+
+    /* 仅限主窗口的子控件背景透明 */
+    QMainWindow QWidget {
         background: transparent;
         border: none;
         padding: 5px;
     }
 """)
+
+
 
 
 
@@ -160,6 +158,20 @@ class Ui_MainWindow(object):
         self.CONSL.setFont(font)
         self.CONSL.setObjectName("CONSL")
         self.horizontalLayout_2.addWidget(self.CONSL)
+
+        self.LLM = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.LLM.sizePolicy().hasHeightForWidth())
+        self.LLM.setSizePolicy(sizePolicy)
+        self.LLM.setMaximumSize(QtCore.QSize(150, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        self.LLM.setFont(font)
+        self.LLM.setObjectName("LLM")
+        self.horizontalLayout_2.addWidget(self.LLM)
+
         spacerItem = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.LOGO = QtWidgets.QLabel(self.centralwidget)
@@ -1057,9 +1069,10 @@ class Ui_MainWindow(object):
         # 基于短时充电数据的锂电池健康状态及老化机制智能量化平台
         MainWindow.setWindowTitle(_translate("MainWindow", "锂电卫士"))
         self.IC.setText(_translate("MainWindow", "IC曲线分析"))
-        self.SOH.setText(_translate("MainWindow", "SOH分析"))
+        self.SOH.setText(_translate("MainWindow", "SOH曲线分析"))
         self.OLD.setText(_translate("MainWindow", "电池老化分析"))
         self.CONSL.setText(_translate("MainWindow", "控制台"))
+        self.LLM.setText(_translate("MainWindow", "AI助理"))
         self.groupBox_2.setTitle(_translate("MainWindow", "输入数据预览"))
         self.groupBox.setTitle(_translate("MainWindow", "输出数据预览"))
         self.filebutton_2.setText(_translate("MainWindow", "..."))
@@ -1125,8 +1138,8 @@ class NewWindow(QtWidgets.QMainWindow):
             self.setCentralWidget(central_widget)
 
             # 重定向标准输出和标准错误到 console
-            sys.stdout = ConsoleRedirect(self.console, sys.stdout)
-            sys.stderr = ConsoleRedirect(self.console, sys.stderr)
+            # sys.stdout = ConsoleRedirect(self.console, sys.stdout)
+            # sys.stderr = ConsoleRedirect(self.console, sys.stderr)
             font = QtGui.QFont()
             font.setFamily("微软雅黑")
             font.setPointSize(15)
@@ -1134,15 +1147,16 @@ class NewWindow(QtWidgets.QMainWindow):
 
 class ConsoleRedirect:
         def __init__(self, console, stream):
-            # pass
-            self.console = console
-            self.stream = stream
+            pass
+            # self.console = console
+            # self.stream = stream
 
         def write(self, text):
-            # pass
+            pass
             # 将文本写入到 console
-            self.console.insertPlainText(text)
+            # self.console.insertPlainText(text)
 
         def flush(self):
             # 刷新 console
             pass
+
