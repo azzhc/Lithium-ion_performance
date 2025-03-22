@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import base64
 
 # Form implementation generated from reading ui file 'llm.ui'
 #
@@ -10,23 +9,52 @@ import base64
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QIcon
 
-from src import icons
 
 class Ui_LLM(object):
     def setupUi(self, LLM):
         LLM.setObjectName("LLM")
         LLM.resize(618, 560)
-        icon = QIcon()
-        icon.addPixmap(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(base64.b64decode(icons.flower))))
-        self.setWindowIcon(icon)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(LLM)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.type = QtWidgets.QComboBox(LLM)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.type.sizePolicy().hasHeightForWidth())
+        self.type.setSizePolicy(sizePolicy)
+        self.type.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        self.type.setFont(font)
+        self.type.setObjectName("type")
+        self.type.addItem("")
+        self.type.addItem("")
+        self.horizontalLayout_2.addWidget(self.type)
+        self.api_adress = QtWidgets.QLineEdit(LLM)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.api_adress.sizePolicy().hasHeightForWidth())
+        self.api_adress.setSizePolicy(sizePolicy)
+        self.api_adress.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(10)
+        font.setBold(False)
+        self.api_adress.setFont(font)
+        self.api_adress.setObjectName("api_adress")
+        self.horizontalLayout_2.addWidget(self.api_adress)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.dialog = QtWidgets.QTextEdit(LLM)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(10)
+        font.setBold(False)
         self.dialog.setFont(font)
         self.dialog.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.dialog.setObjectName("dialog")
@@ -34,20 +62,20 @@ class Ui_LLM(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.msg_text = QtWidgets.QLineEdit(LLM)
-        self.msg_text.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.msg_text.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(10)
+        font.setBold(False)
         self.msg_text.setFont(font)
         self.msg_text.setObjectName("msg_text")
-        self.msg_text.setPlaceholderText("输入你的消息...")
         self.horizontalLayout.addWidget(self.msg_text)
         self.msg_send = QtWidgets.QPushButton(LLM)
-        self.msg_send.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.msg_send.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(10)
-        font.setBold(True)
+        font.setBold(False)
         self.msg_send.setFont(font)
         self.msg_send.setObjectName("msg_send")
         self.horizontalLayout.addWidget(self.msg_send)
@@ -58,5 +86,7 @@ class Ui_LLM(object):
 
     def retranslateUi(self, LLM):
         _translate = QtCore.QCoreApplication.translate
-        LLM.setWindowTitle(_translate("LLM", "智能助手"))
+        LLM.setWindowTitle(_translate("LLM", "AI助手"))
+        self.type.setItemText(0, _translate("LLM", "本地"))
+        self.type.setItemText(1, _translate("LLM", "外部API"))
         self.msg_send.setText(_translate("LLM", "发送"))

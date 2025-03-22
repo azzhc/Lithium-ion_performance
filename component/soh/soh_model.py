@@ -13,7 +13,15 @@ import os
 import pandas as pd
 import torch.nn.functional as F
 
+import re
 
+# 定义一个函数，用于从文件名中提取数字部分
+def extract_number(filename):
+    match = re.search(r'\d+', filename)
+    if match:
+        return int(match.group())
+    else:
+        return -1  # 如果找不到数字，则返回一个标记值
 ##LSTM,RNN,GRU模型构建部分,Net(window_size,num_classes,model)    model为LSTM,RNN,GRU
 ##因为LSTM,RNN,GRU都是同类循环网络,构造是一样的
 ##为了更好适应SOH预测任务，重新设计了网络结构
@@ -115,12 +123,15 @@ def soh_train(input, output, model_select, best_model_path, window_size,
             doc = best_model_path + '/' + str(epoch) + '_' \
                   + str(sqrt(valid_loss)) + '.pth'
             torch.save(model.state_dict(), doc)
+
             #删除之前的模型
             files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
-            best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            # best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            best_pth_file = max(files, key=lambda x: extract_number(x))
             for file in files:
                 if file != best_pth_file:
                     os.remove(best_model_path + '/' + file)
+
             validloss_list.append(valid_loss)
         total_loss.append(train_loss)
         total_validloss.append(valid_loss)

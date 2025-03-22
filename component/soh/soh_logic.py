@@ -365,7 +365,7 @@ class sohMainWindow(QWidget, Ui_Form):
                 #     "模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(
                 #         self.model_select, self.best_model_path, self.best_model_name, self.best_model_path))
             except Exception as e:
-                # 捕获异常并显示错误消息
+            #     捕获异常并显示错误消息
                 QMessageBox.critical(self, '出错啦', str(e))
 
         else:

@@ -23,6 +23,8 @@ import component.ic.ic_model as ic_model
 import component.ic.ic_getin as ic_getin
 # from ..soh.soh_logic import sohMainWindow
 import re
+from sentence_transformers import SentenceTransformer
+import torch
 from component.soh.soh_logic import sohMainWindow
 from component.old.oldana_logic import oldMainWindow
 # from ..old.oldana_logic import oldMainWindow
@@ -184,6 +186,7 @@ class ic_MainWindow(QMainWindow, Ui_MainWindow):
         # 模型预测
         self.pushButton_5.clicked.connect(self.predict_model)
 
+        self.apply_qss()
 
 
     def choosefile_old(self, index):
@@ -194,7 +197,65 @@ class ic_MainWindow(QMainWindow, Ui_MainWindow):
             setattr(self, f"ic_path_{index}", fname)
             # self.status_label.setText("已选择文件{}".format(index))
 
+    def apply_qss(self):
+        qss = """
+    /* 设置主窗口背景图片 */
+    QMainWindow {
+        background-image: url('src/background.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
+    /* QMessageBox 的样式，保持白色背景 */
+    QMessageBox {
+        background-color: white;
+    }
+
+    /* 输入框和按钮的样式 */
+    QComboBox, QPushButton {
+        background-color: white; /* 不透明背景 */
+        border: 1px solid #ccc;
+        border-radius: 4px; /* 圆角边框 */
+        padding: 5px;
+    }
+
+    /* 按钮的样式，增加边框 */
+    QPushButton {
+        background-color: #f0f0f0; /* 按钮背景色，不透明 */
+        border-radius: 6px; /* 圆角边框 */
+        padding: 8px 12px; /* 按钮内边距 */
+        font-size: 16px; /* 字体大小 */
+    }
+
+    QPushButton:hover {
+        background-color: #e0e0e0; /* 鼠标悬停时的背景色 */
+        border: 2px solid #005a9e; /* 鼠标悬停时的边框颜色 */
+    }
+
+    QPushButton:pressed {
+        background-color: #d0d0d0; /* 按钮按下时的背景色 */
+        border: 2px solid #004578; /* 按钮按下时的边框颜色 */
+    }
+
+    /* 仅对主窗口的子控件设置透明背景 */
+    QMainWindow QWidget {
+        background: transparent; /* 控件背景透明 */
+    }
+    
+     QComboBox QAbstractItemView {
+        background-color: white; /* 设置下拉框中的项目背景色 */
+        border: 1px solid #ccc; /* 下拉框边框 */
+        selection-background-color: #0078d7; /* 选中项背景色 */
+        selection-color: white; /* 选中项文字颜色 */
+    }
+    
+    /* 保持按钮和下拉框背景不透明 */
+    QComboBox, QPushButton, QLineEdit {
+        background-color: white; /* 保持不透明 */
+    }
+"""
+
+        self.setStyleSheet(qss)
     def choosefile(self, index):
         fname = QFileDialog.getExistingDirectory(None, '选择路径')
         if fname:  # 如果用户选择了文件
