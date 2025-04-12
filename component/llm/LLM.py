@@ -65,11 +65,11 @@ def query_model(user_input: str, model_type: str = "local", api_url: str = None)
 
         # 定义角色描述（系统信息，可根据需要自定义）
         role_description = SystemMessage(
-            content="你是一个锂电池软件帮助助手，叫小锂，来自四川大学电气工程实验室。"
+            content="你是一个锂电池软件帮助助手，叫小锂。"
         )
 
         # 1. 读取文件并分词
-        documents = TextLoader("component/llm/documents.txt").load()
+        documents = TextLoader("component/llm/documents.txt", encoding="utf-8").load()
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
         doc_splits = text_splitter.split_documents(documents)
 
@@ -80,7 +80,7 @@ def query_model(user_input: str, model_type: str = "local", api_url: str = None)
 
         # 3. 定义提示模板
         template = """
-        系统信息：请你记住你的角色是一个叫小锂的锂电池软件助手，来自四川大学电气工程实验室，你将和用户对话，需要帮助用户使用软件，同时需要根据以下文本回答问题。
+        系统信息：请你记住你的角色是一个叫小锂的锂电池软件助手，你将和用户对话，需要帮助用户使用软件，同时需要根据以下文本回答问题。
         请注意输出禁止使用markdown格式
         文本: {context}
         问题: {question}
