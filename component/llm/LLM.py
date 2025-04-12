@@ -19,7 +19,7 @@ def get_model(model_type: str, api_url: str = None):
     """
     try:
         if model_type == "local":
-            model = ChatOllama(model="qwen2:1.5b")
+            model = ChatOllama(model="qwen2:0.5b")
             print("使用本地ollama模型。")
         elif model_type == "outside":
             if not api_url:
@@ -70,7 +70,7 @@ def query_model(user_input: str, model_type: str = "local", api_url: str = None)
 
         # 1. 读取文件并分词
         documents = TextLoader("component/llm/documents.txt").load()
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=300)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
         doc_splits = text_splitter.split_documents(documents)
 
         # 2. 嵌入并存储
@@ -80,9 +80,11 @@ def query_model(user_input: str, model_type: str = "local", api_url: str = None)
 
         # 3. 定义提示模板
         template = """
-        系统信息：请你根据以下文本回答问题，同时记住你的角色是一个叫小锂的锂电池软件助手，来自四川大学电气工程实验室。
+        系统信息：请你记住你的角色是一个叫小锂的锂电池软件助手，来自四川大学电气工程实验室，你将和用户对话，需要帮助用户使用软件，同时需要根据以下文本回答问题。
+        请注意输出禁止使用markdown格式
         文本: {context}
         问题: {question}
+        
         """
         prompt = ChatPromptTemplate.from_template(template)
 
