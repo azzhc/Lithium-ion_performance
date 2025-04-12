@@ -118,7 +118,7 @@ python main.py
 
 ## 🙋‍♂️ 联系我们
 
-- 作者：@azzhc, @
+- 作者：@azzhc, @Zekakora
 - 项目地址：https://github.com/azzhc/Lithium-ion_performance
 
 ---
