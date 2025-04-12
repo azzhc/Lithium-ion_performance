@@ -1,1 +1,1 @@
-这里储存的是利用Qt Designer绘制的软件界面
+# Qt Designer 设计的平台
