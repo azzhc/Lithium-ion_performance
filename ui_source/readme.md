@@ -1,1 +1,1 @@
-# Qt Designer 设计的平台
+# Qt Designer 设计的UI文件
