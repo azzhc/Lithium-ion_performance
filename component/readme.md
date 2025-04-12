@@ -1,33 +1,34 @@
-# 这是软件的界面实现部分
+# 平台界面模块设计
 
 **目录结构如下**
 <pre>
-Component
-│   readme.md
+component
 │
-├───ic					# 这是ic功能的实现
-│   │   ic_getii.py			
-│   │   ic_getin.py			# 数据读取模块
-│   │   ic_logic.py			# 页面逻辑
-│   │   ic_model.py		     # ai训练模块
-│   │   licon_ic.py			# 页面初始化模块
-│   │   __init__.py
-│
-├───old			       		 # 这是老化分析功能的实现
-│   │   oldana.py			 # 页面初始化模块
-│   │   oldana_import.py	 # 数据分析模块
-│   │   oldana_logic.py		 # 页面逻辑模块
-│   │
-│
-└───soh				         # 这是soh功能的实现
-│   │   soh_getin.py		 # 数据获取模块
-│   │   soh_logic.py		 # 界面逻辑
-│   │   soh_model.py  	     # ai训练
-│   │   licon_soh.py		 # 界面初始化
-└───llm				         # 这是llm功能的实现
-    │   all-MiniLM-L6-v2		 # RAG模型
-    │   LLM.py		         # 数据获取模块
-    │   llm_logic.py		 # 界面逻辑
-    │   llm_ui.py  	         # 界面初始化
-    │   documents.txt	     # 语料库
+├───ic					# IC模块
+│   │───__init__.py			
+│   │───background.jpg      # 界面总体背景			
+│   │───ic_getii.py			# 打印IC相关状态
+│   │───ic_getin.py			# IC数据读取
+│   │───ic_logic.py			# IC界面逻辑
+│   │───ic_model.py		    # IC模型设置
+│   └───licon_ic.py			# IC界面初始化
+│                       
+├───llm				    # AI助手模块
+│   │───LLM.py		        # LLM数据获取
+│   │───documents.txt	     # LLM语料库
+│   │───llm_logic.py		 # LLM界面逻辑
+│   └───llm_ui.py  	         # LLM界面初始化
+│                       
+├───old			        # 老化机制量化模块
+│   │───oldana.py			 # 老化页面初始化
+│   │───oldana_import.py	 # 老化数据分析
+│   └───oldana_logic.py		 # 老化界面逻辑
+│                               
+└───soh				    # SOH模块
+│   │───licon_soh.py		 # SOH界面初始化
+│   │───soh_getin.py		 # SOH数据读取
+│   │───soh_logic.py		 # SOH界面逻辑
+│   └───soh_model.py  	     # SOH模型设置
+│                            
+└───readme.md		    # component介绍
 <pre>
