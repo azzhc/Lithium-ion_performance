@@ -19,6 +19,7 @@ Lithium-ion_performance
 ├───data               # 示例数据
 │   ├───6C-60per_3C       # 快充策略样本1
 │   ├───7C-40per_3C       # 快充策略样本2
+│   ├───model             # 预训练模型
 │   └───readme.md         # 数据说明
 ├───src                # 图片/资源文件
 ├───ui_source          # Qt原始UI界面文件
