@@ -10,10 +10,8 @@ Component
 │   ├───ic_model.py         # IC模型设置
 │   └───licon_ic.py         # IC界面初始化                   
 ├───llm                  # AI助手模块
-│   ├───LLM.py              # LLM数据获取
-│   ├───documents.txt       # LLM语料库
-│   ├───llm_logic.py        # LLM界面逻辑
-│   └───llm_ui.py           # LLM界面初始化                       
+│   ├───basis               # LLM基础资源
+│   └───llm_logic.py        # LLM界面逻辑        
 ├───old                  # 老化机制量化模块
 │   ├───oldana.py           # 老化页面初始化
 │   ├───oldana_import.py    # 老化数据分析
