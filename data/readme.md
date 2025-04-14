@@ -14,7 +14,7 @@ data
 │───7C-40per_3C
 │   ├───CH37
 │   └───CH38
-└───model
+└───model     #预训练模型
     ├───IC
     └───SOH
 </pre>
